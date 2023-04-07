@@ -1,12 +1,14 @@
-import React from 'react';
-import Navbar from './Navbar';
- 
-const App: React.FC = () => {
+import React from 'react'
+import Nav from './components/Nav'
+import Nearyou from './components/Nearyou'
+
+const App = () => {
   return (
     <div>
-      <Navbar />
+      <Nav />
+      <Nearyou />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -13,3 +13,24 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+/* categories */
+
+.category{
+  border: solid 2px white;
+  width: 86px;
+  height: 86px;
+  border-radius: 100px;
+
+}
+
+.cat_container{
+  border: solid 2px pink;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.cat_box{
+  border: solid 2px gold;
+}

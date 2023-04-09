@@ -1,11 +1,14 @@
 // Import dependencies
-const express = require('express');
+
+const axios = require('axios');
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
 const app = express();
 
-// Define API endpoints
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+app.use(cors());
+app.use(bodyParser.json());
 
 // Start server
 const PORT = 5000; // Replace with your desired port number
@@ -13,32 +16,27 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+app.get('/api/search', (req, res) => {
+  const { search, loc } = req.query;
 
-// Define an API endpoint for retrieving Google Places API results
-app.get('/api/places', (req, res) => {
-    // Make a request to Google Places API and process the response
-    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
-    const params = new URLSearchParams({
-      location: '37.7749,-122.4194',  // Example location (latitude,longitude)
-      radius: 5000,  // Example radius in meters
-      keyword: 'oil change',  // Example service type
-      key: 'AIzaSyDR_uL1-Fbf5vgatyRpAZWdu2TlOzr_XDQ'  // Replace with your actual API key
+  const config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${search}&location=${loc}&radius=5000&key=AIzaSyDR_uL1-Fbf5vgatyRpAZWdu2TlOzr_XDQ`,
+    headers: {
+      'Accept': 'application/json'
+    }
+  };
+
+  axios.request(config)
+    .then((response) => {
+      // Send the response data back to the frontend
+      res.send(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      // Handle any errors that occur during the request
+      console.error(error);
+      // Send an error response to the frontend
+      res.status(500).json({ error: 'An error occurred during the request.' });
     });
-  
-    // Make a GET request to the Google Places API
-    fetch(`${url}?${params}`)
-      .then(response => response.json())
-      .then(data => {
-        // Extract the relevant data from the response
-        const results = data.results;
-        // ... code to extract relevant data ...
-  
-        // Return the results data as a JSON response
-        res.json({ results });
-      })
-      .catch(error => {
-        console.error(error);
-        res.status(500).json({ error: 'Failed to fetch results from Google Places API' });
-      });
-  });
-
+});

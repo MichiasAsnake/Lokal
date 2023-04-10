@@ -14,6 +14,32 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+app.post("/api/trigger-webhook", (req, res) => {
+
+  const https = require("https")
+  
+  const data = JSON.stringify({ "test": "event" });
+
+  const options = {
+    hostname: "eokyvpokxzyzxr6.m.pipedream.net",
+    port: 443,
+    path: "/",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Content-Length": data.length,
+    },
+  };
+
+  const webhookReq = https.request(options, (webhookRes) => {
+    // Handle response from webhook or server-side action
+    // ...
+  });
+
+  webhookReq.write(data);
+  webhookReq.end();
+});
+
 app.get('/api/refresh', (req, res) => {
   // Make GET request to the external API
   let config = {

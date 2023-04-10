@@ -7,14 +7,15 @@ const SearchBar = () => {
   useEffect(() => {
     const handleBeforeUnload = (event: { preventDefault: () => void; returnValue: string; }) => {
       event.preventDefault();
-      // Show confirmation dialog to the user
       event.returnValue = '';
-      // Make API request to your backend server
-      fetch('http://localhost:5000/api/refresh', {
-        method: 'GET',
+      fetch('http://localhost:5000/api/trigger-webhook', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+          'test': 'event'
+        })
       })
       .then(response => {
         // Handle response from backend, if needed
@@ -25,13 +26,14 @@ const SearchBar = () => {
         console.error(error);
       });
     };
-
+  
     window.addEventListener('beforeunload', handleBeforeUnload);
-
+  
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
+  
 
   const handleSearch = () => {
     // Trigger the GET request with the values of search and loc

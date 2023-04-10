@@ -1,8 +1,37 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from "react";
 
 const SearchBar = () => {
   const [search, setSearch] = useState('');
   const [loc, setLoc] = useState('');
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: { preventDefault: () => void; returnValue: string; }) => {
+      event.preventDefault();
+      // Show confirmation dialog to the user
+      event.returnValue = '';
+      // Make API request to your backend server
+      fetch('http://localhost:5000/api/refresh', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        // Handle response from backend, if needed
+        console.log(response);
+      })
+      .catch(error => {
+        // Handle error, if needed
+        console.error(error);
+      });
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   const handleSearch = () => {
     // Trigger the GET request with the values of search and loc

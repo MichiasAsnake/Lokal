@@ -1,5 +1,3 @@
-// Import dependencies
-
 const axios = require('axios');
 const express = require("express");
 const cors = require("cors");
@@ -16,7 +14,39 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-app.get('/api/search', (req, res) => {
+app.get('/api/refresh', (req, res) => {
+  // Make GET request to the external API
+  let config = {
+  method: 'get',
+  maxBodyLength: Infinity,
+  url: 'http://api.ipstack.com/check?access_key=acb97247d9841409f7ccaf53b6749b1a',
+  headers: { }
+};
+
+axios.request(config)
+.then((response) => {
+  let data = response.data
+      const extractedData = {
+        // Extract the relevant fields from the response
+        field1: data.field1,
+        field2: data.field2,
+        // Add any other fields you need to extract
+      };
+
+      // Use the extracted data as needed (e.g., save to database, send to frontend)
+      // ...
+
+   
+      res.status(200).json({ message: 'Refresh triggered successfully.' });
+    })
+    .catch((error) => {
+      console.error(error);
+      // Send an error response to the frontend, if needed
+      res.status(500).json({ error: 'An error occurred during the refresh request.' });
+    });
+});
+/*
+ app.get('/api/search', (req, res) => {
   const { search, loc } = req.query;
 
   const config = {
@@ -39,4 +69,5 @@ app.get('/api/search', (req, res) => {
       // Send an error response to the frontend
       res.status(500).json({ error: 'An error occurred during the request.' });
     });
-});
+});*/
+

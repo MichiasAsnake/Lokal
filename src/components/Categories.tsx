@@ -1,46 +1,69 @@
 import React from "react";
 
-type IData = {
+interface IData {
   name: string;
-  photos: string[];
+  photos: {
+    photo_reference: string;
+    html_attributions: string[];
+    height: number;
+    width: number;
+  }[];
   opening_hours: {
     open_now: boolean;
   };
   rating: number;
-  plus_code: {
+  plus_code:{
     compound_code: string;
   };
-};
+}
 
-const Categories = ({ data }: { data: IData[] | null }) => { // Update the type of "data" prop to IData[] | null
-  // Check if data is null, and render appropriate UI
+const Categories = ({ data }: { data: IData[] | null }) => {
   if (data === null) {
-    return <div>Loading...</div>; // or any other UI for handling null data
+    return <div>Loading...</div>;
   }
 
-  // Access the data prop and use it to render the UI
-
-  function ArrayObj({ data }: { data: IData[] }) { // Update the type of "data" prop for ArrayObj
+  function ArrayObj({ data }: { data: IData[] }) {
     let windowBox = [];
 
     for (let i = 0; i < data.length; i++) {
-      windowBox.push(
-        <div key={i}>
-          <p style={{ backgroundImage: `url(${data[i].photos[0]})`}} >d</p>
-          <p>{data[i].name}</p>
-        </div>
-      );
+      // Check if photos array is empty or doesn't have an object at index 0
+      if (data[i].photos.length > 0) {
+        const photoReference = data[i].photos[0]?.photo_reference; // Use optional chaining to safely access photo_reference property
+        if (photoReference) {
+          let url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${photoReference}&key=AIzaSyDR_uL1-Fbf5vgatyRpAZWdu2TlOzr_XDQ`;
+          windowBox.push(
+            <div> 
+              <div
+              key={i}
+              style={{
+                backgroundImage: `url(${url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                
+                borderRadius:"5px",
+              }}
+            >
+            </div>
+              <div>
+                <p className="title">{data[i].name}</p>
+                <p>{data[i].plus_code.compound_code}</p>
+                <p>{data[i].rating}</p>
+                {(data[i].opening_hours.open_now) ? <p className="status">OPEN</p> : <p className="statusC">CLOSED</p>}
+                </div>
+                </div>
+           
+          );
+        }
+      }
     }
 
-    return (
-      <div>
+    return <div className="winBox">
       {windowBox}
-      </div>
-    );
+      </div>;
   }
-
-  console.log(data);
-  return <ArrayObj data={data} />; // Render the ArrayObj component and pass "data" as a prop
+console.log(data)
+  return <ArrayObj data={data} />;
 };
 
 export default Categories;
+

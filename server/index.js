@@ -31,7 +31,6 @@ app.listen(PORT, () => {
     .then((response) => {
       // Send the response data back to the frontend
       const { results } = response.data;
-
       // Check if results array exists and has items
       if (!results || results.length === 0) {
         // Handle no results available
@@ -42,12 +41,12 @@ app.listen(PORT, () => {
 
         results.forEach(result =>{
         // Destructure the properties from the first result item
-        const { name, photos, opening_hours, rating, plus_code } = result;
+        const { name, photos, opening_hours, rating, plus_code, id } = result;
       
         // Update the storeData object with the extracted data
         let storeData = {
           name: name || "", // The name of the store
-          
+          place_id: id || "",
           photos: photos || [], // An array of photos for the store
           opening_hours: {
             open_now: opening_hours && opening_hours.open_now || false, // Whether the store is currently open (true or false)

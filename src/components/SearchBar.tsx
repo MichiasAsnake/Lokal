@@ -50,7 +50,7 @@ const SearchBar = () => {
       console.error(error);
     });
   };
-
+  
   return (
     <div>
       <input
@@ -61,6 +61,7 @@ const SearchBar = () => {
       />
       <button onClick={handleSearch}>Search</button>
       <Categories data={responseData} /> 
+      
     </div>
   );
 };

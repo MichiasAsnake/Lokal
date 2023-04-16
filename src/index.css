@@ -31,6 +31,92 @@
   gap: 24px;
 }
 
-.cat_box{
-  border: solid 2px gold;
+.winBox {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  gap: 18px;
+  width:955px;
+  position: relative;
+  overflow-y: hidden;
+ 
+  margin:0 auto;
+}
+
+.winBox > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.winBox > div > div {
+  height: 156px;
+  width: 226px;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+ 
+}
+
+.winBox > div > div::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.winBox > div > div > p {
+  margin: 0;
+}
+
+/* Styles for common arrow styles */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 36px;
+  width: 36px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Styles for left arrow */
+.leftArrow {
+  left:0px;
+  color: pink;
+  
+
+}
+
+/* Styles for right arrow */
+.rightArrow {
+  right: 0px;
+  
+  color: rgb(255, 0, 43);
+}
+
+
+.arrow:hover {
+  background-color: #333;
+}
+
+.status{
+  width: 42px;
+  height: 18px;
+  background-color: rgb(64, 197, 87);
+  border-radius: 1.75px;
+}
+.statusC{
+  width: 42px;
+  height: 18px;
+  background-color: rgb(153, 54, 54);
+  border-radius: 1.75px;
+}
+
+.title{
+  
+  
+  border: 2px solid red;
 }

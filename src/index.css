@@ -36,17 +36,19 @@
   flex-wrap: nowrap;
   overflow-x: hidden;
   gap: 18px;
-  width:955px;
+  width:975px;
   position: relative;
   overflow-y: hidden;
- 
+
   margin:0 auto;
 }
 
-.winBox > div {
+.contentCard {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  
+  
+  margin: 0;
 }
 
 .winBox > div > div {
@@ -64,15 +66,13 @@
   padding-bottom: 100%;
 }
 
-.winBox > div > div > p {
-  margin: 0;
-}
+
 
 /* Styles for common arrow styles */
 .arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-130%);
   height: 36px;
   width: 36px;
   background-color: #ffffff;
@@ -80,11 +80,15 @@
   font-size: 24px;
   cursor: pointer;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 /* Styles for left arrow */
 .leftArrow {
-  left:0px;
+  left:160px;
   color: pink;
   
 
@@ -92,7 +96,7 @@
 
 /* Styles for right arrow */
 .rightArrow {
-  right: 0px;
+  right: 160px;
   
   color: rgb(255, 0, 43);
 }
@@ -115,8 +119,16 @@
   border-radius: 1.75px;
 }
 
+.carousel-content-wrapper{
+  display: flex;
+}
+
 .title{
-  
-  
-  border: 2px solid red;
+  margin:0;
+}
+
+.searchBar{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
 }

@@ -5,6 +5,7 @@ import Nearyou from "./Nearyou";
 interface IData {
   name: string;
   title: string;
+  place_id:string;
   photos: string[];
   opening_hours: {
     open_now: boolean;
@@ -53,13 +54,16 @@ const SearchBar = () => {
   
   return (
     <div>
-      <input
-        type="text"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        placeholder="Enter search keyword"
-      />
-      <button onClick={handleSearch}>Search</button>
+      <div className="searchBar">
+        <input
+          type="text"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Enter search keyword"
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+      
       <Categories data={responseData} /> 
       
     </div>

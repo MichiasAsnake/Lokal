@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Categories from "./Categories";
-import Nearyou from "./Nearyou";
+
 
 interface IData {
   name: string;

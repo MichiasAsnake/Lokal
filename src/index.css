@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,13 +33,12 @@
 
 .winBox {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   overflow-x: hidden;
   gap: 18px;
   width:975px;
   position: relative;
   overflow-y: hidden;
-
   margin:0 auto;
 }
 
@@ -107,24 +106,44 @@
 }
 
 .status{
-  width: 42px;
-  height: 18px;
-  background-color: rgb(64, 197, 87);
+  width: 48.5px;
+  height: 21.2px;
+  background-color: rgb(96, 221, 117);
   border-radius: 1.75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #215015;
 }
 .statusC{
-  width: 42px;
-  height: 18px;
-  background-color: rgb(153, 54, 54);
+  width: 48.5px;
+  height: 21.2px;
+  background-color: rgb(190, 78, 78);
   border-radius: 1.75px;
+  display: flex;
+  font-size: 12px;
+  justify-content: center;
+  align-items: center;
+  color: #501515;
+  
 }
 
 .carousel-content-wrapper{
   display: flex;
 }
 
-.title{
-  margin:0;
+.contentText{
+  margin: 0;
+  line-height: 8px;
+}
+
+.contentDetails{
+  display: flex;
+  align-items: center;
+  gap:10px;
+  margin-top: -10px;
+  color: #676767;
+  
 }
 
 .searchBar{

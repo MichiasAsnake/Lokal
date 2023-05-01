@@ -1,9 +1,28 @@
 import { useEffect, useState } from "react";
+import Categories from "./Categories";
+
+
+interface IData {
+  name: string;
+  title: string;
+  place_id:string;
+  photos: string[];
+  opening_hours: {
+    open_now: boolean;
+  };
+  rating: number;
+  plus_code: {
+    compound_code: string;
+  };
+}
 
 function SearchBar(){
   const [search, setSearch] = useState('');
-  const [loc, setLoc] = useState('');
+  const [lat, setLat] = useState(Number);
+  const [long, setLong] = useState(Number);
+  const [responseData, setResponseData] = useState<IData | null>(null); // State to store the API response data
 
+<<<<<<< HEAD
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
@@ -23,50 +42,52 @@ function SearchBar(){
       })
       .catch(error => {
         // Handle error, if needed
+=======
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLat(latitude)
+        setLong(longitude)
+      },
+      (error) => {
+        // Handle error
+>>>>>>> 392fd9b953150a5ed097e577fbde5aa156662b9f
         console.error(error);
-      });
-    };
-  
-    window.addEventListener('beforeunload', handleBeforeUnload);
-  
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, []);
-  
+      }
+    );
+  }
 
   const handleSearch = () => {
     // Trigger the GET request with the values of search and loc
-    fetch(`http://localhost:5000/api/search?search=${search}&loc=${loc}`, {
+    fetch(`http://localhost:5000/api/search?search=${search}&lat=${lat}&long=${long}`, {
       method: 'GET'
     })
     .then(response => response.json())
     .then(data => {
       // Handle the response data as needed
-      let places = data;
-      console.log(places);
+      setResponseData(data); // Update the state with the API response data
     })
     .catch(error => {
       // Handle any errors that occur during the request
       console.error(error);
     });
   };
-
+  
   return (
     <div>
-      <input
-        type="text"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        placeholder="Enter search keyword"
-      />
-      <input
-        type="text"
-        value={loc}
-        onChange={e => setLoc(e.target.value)}
-        placeholder="Enter location"
-      />
-      <button onClick={handleSearch}>Search</button>
+      <div className="searchBar">
+        <input
+          type="text"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Enter search keyword"
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+      
+      <Categories data={responseData} /> 
+      
     </div>
   );
 };

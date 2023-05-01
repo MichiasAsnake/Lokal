@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -15,10 +15,9 @@ app.listen(PORT, () => {
 });
 
 app.post("/api/trigger-webhook", (req, res) => {
+  const https = require("https");
 
-  const https = require("https")
-  
-  const data = JSON.stringify({ "test": "event" });
+  const data = JSON.stringify({ test: "event" });
 
   const options = {
     hostname: "eokyvpokxzyzxr6.m.pipedream.net",
@@ -40,18 +39,19 @@ app.post("/api/trigger-webhook", (req, res) => {
   webhookReq.end();
 });
 
-app.get('/api/refresh', (req, res) => {
+app.get("/api/refresh", (req, res) => {
   // Make GET request to the external API
   let config = {
-  method: 'get',
-  maxBodyLength: Infinity,
-  url: 'http://api.ipstack.com/check?access_key=acb97247d9841409f7ccaf53b6749b1a',
-  headers: { }
-};
+    method: "get",
+    maxBodyLength: Infinity,
+    url: "http://api.ipstack.com/check?access_key=acb97247d9841409f7ccaf53b6749b1a",
+    headers: {},
+  };
 
-axios.request(config)
-.then((response) => {
-  let data = response.data
+  axios
+    .request(config)
+    .then((response) => {
+      let data = response.data;
       const extractedData = {
         // Extract the relevant fields from the response
         field1: data.field1,
@@ -62,13 +62,14 @@ axios.request(config)
       // Use the extracted data as needed (e.g., save to database, send to frontend)
       // ...
 
-   
-      res.status(200).json({ message: 'Refresh triggered successfully.' });
+      res.status(200).json({ message: "Refresh triggered successfully." });
     })
     .catch((error) => {
       console.error(error);
       // Send an error response to the frontend, if needed
-      res.status(500).json({ error: 'An error occurred during the refresh request.' });
+      res
+        .status(500)
+        .json({ error: "An error occurred during the refresh request." });
     });
 });
 /*
@@ -96,4 +97,3 @@ axios.request(config)
       res.status(500).json({ error: 'An error occurred during the request.' });
     });
 });*/
-

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-const SearchBar = () => {
+function SearchBar(){
   const [search, setSearch] = useState('');
   const [loc, setLoc] = useState('');
 
   useEffect(() => {
-    const handleBeforeUnload = (event: { preventDefault: () => void; returnValue: string; }) => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
       event.returnValue = '';
       fetch('http://localhost:5000/api/trigger-webhook', {

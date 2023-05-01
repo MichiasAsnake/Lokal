@@ -5,7 +5,8 @@ const Categories = () => {
     <div className="cat_container">
         
         <div className="cat_box">
-        <div className="cat_pic">
+        <div style={{backgroundImage: 'url(src\images\Automotive.jpg)' , border: 'solid 2px', height:'86px', width:'86px',
+          borderRadius:'90px'}}>
             
         </div>
         <div className="cat_txt">

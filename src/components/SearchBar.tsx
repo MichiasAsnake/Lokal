@@ -22,27 +22,6 @@ function SearchBar(){
   const [long, setLong] = useState(Number);
   const [responseData, setResponseData] = useState<IData | null>(null); // State to store the API response data
 
-<<<<<<< HEAD
-  useEffect(() => {
-    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-      event.preventDefault();
-      event.returnValue = '';
-      fetch('http://localhost:5000/api/trigger-webhook', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          'test': 'event'
-        })
-      })
-      .then(response => {
-        // Handle response from backend, if needed
-        console.log(response);
-      })
-      .catch(error => {
-        // Handle error, if needed
-=======
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -52,7 +31,6 @@ function SearchBar(){
       },
       (error) => {
         // Handle error
->>>>>>> 392fd9b953150a5ed097e577fbde5aa156662b9f
         console.error(error);
       }
     );
@@ -73,21 +51,71 @@ function SearchBar(){
       console.error(error);
     });
   };
+
+  useEffect(()=>{
+    
+  if (search.length !== 0){
+    handleSearch()
+  }
+
+  }, [search])
+
+
+  const jobcard = [
+    { name: 'Oil Change', photo: 'src/images/Oil Change.jpg' },
+    { name: 'Beauty Supply' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+    { name: 'Book Store' },
+  ];
   
+  const JobCards = () => {
+    return (
+      <div className="page">
+        {jobcard.map((card, index) => (
+          <div key={index} className="details">
+            <div
+              style={{
+                backgroundImage: `url(${card.photo})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                borderRadius: "5px",
+                height: "163.15px",
+                width: "259.66px",
+                border: "solid 2px black",
+              }}
+              onClick={()=> {setSearch(card.name);}}
+            />
+            <div style={{fontSize:"22px"}}>{card.name}</div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+console.log(search)
   return (
     <div>
-      <div className="searchBar">
-        <input
-          type="text"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder="Enter search keyword"
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
       
-      <Categories data={responseData} /> 
-      
+       <img src="src\images\lokal.svg" style={{display:"flex", margin:'0 auto', width:"200px",paddingTop:"30px", paddingBottom:"20px"}}></img>
+        <div style={{width:'1102px', margin:'0 auto', fontFamily:'Apercu Bold', fontSize:'27.57px', paddingBottom:'10px'}}>
+         {search ? '' : <div>Top Services</div> } 
+        </div>
+
+        <div>
+          {search ? <Categories data={responseData} /> : JobCards()}
+       </div>
+       
     </div>
   );
 };

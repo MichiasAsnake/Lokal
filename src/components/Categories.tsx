@@ -1,20 +1,5 @@
 import React from "react";
 
-<<<<<<< HEAD
-const Categories = () => {
-  return (
-    <div className="cat_container">
-        
-        <div className="cat_box">
-        <div style={{backgroundImage: 'url(src\images\Automotive.jpg)' , border: 'solid 2px', height:'86px', width:'86px',
-          borderRadius:'90px'}}>
-            
-        </div>
-        <div className="cat_txt">
-            <p>Automotive</p>
-        </div>
-        </div>
-=======
 interface IData {
   name: string;
   place_id: string;
@@ -32,7 +17,6 @@ interface IData {
     compound_code: string;
   };
 }
->>>>>>> 392fd9b953150a5ed097e577fbde5aa156662b9f
 
 const Categories = ({ data }: { data: IData[] | null }) => {
   if (data === null) {
@@ -64,6 +48,11 @@ const Categories = ({ data }: { data: IData[] | null }) => {
         if (photoReference) {
           let url = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${photoReference}&key=AIzaSyDR_uL1-Fbf5vgatyRpAZWdu2TlOzr_XDQ`;
           let geo = `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Cgeometry&place_id=${photoURL}&key=AIzaSyDR_uL1-Fbf5vgatyRpAZWdu2TlOzr_XDQ`;
+          
+          const compoundCode = data[i].plus_code.compound_code;          
+          const cityStateRegex = /[0-9][^\s]+.([^.]+)/is
+          const match = compoundCode.match(cityStateRegex);
+          
           windowBox.push(
             <div
               className="contentCard"
@@ -80,9 +69,10 @@ const Categories = ({ data }: { data: IData[] | null }) => {
               ></div>
               <div className="contentText">
                 <p className="title">{data[i].name}</p>
-                <p>{data[i].plus_code.compound_code}</p>
+                <p className="city">{match[1]}</p>
                 <div className="contentDetails">
                 <p>{data[i].rating}</p>
+                <img src="src\images\star.svg" alt="rating star" style={{width:"16px"}} />
                 {data[i].opening_hours.open_now ? (
                   <p className="status">OPEN</p>
                 ) : (
@@ -107,7 +97,7 @@ const Categories = ({ data }: { data: IData[] | null }) => {
 
   return (
     <div>
-      <h2 style={{ marginLeft: "185px" }}>Popular Near You</h2>
+      <h2 style={{ display:"flex", width:"975px", margin:"0 auto", marginBottom:"35px"}}>Popular Near You</h2>
       <ArrayObj data={data} />
     </div>
   );

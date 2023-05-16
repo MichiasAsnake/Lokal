@@ -1,25 +1,12 @@
 import { useEffect, useState } from "react";
 import Categories from "./Categories";
-
-interface IData {
-  name: string;
-  title: string;
-  place_id: string;
-  photos: string[];
-  opening_hours: {
-    open_now: boolean;
-  };
-  rating: number;
-  plus_code: {
-    compound_code: string;
-  };
-}
+import { IData } from "./types";
 
 function SearchBar() {
   const [search, setSearch] = useState("");
-  const [lat, setLat] = useState(Number);
-  const [long, setLong] = useState(Number);
-  const [responseData, setResponseData] = useState<IData | null>(null); // State to store the API response data
+  const [lat, setLat] = useState<number>(0);
+  const [long, setLong] = useState<number>(0);
+  const [responseData, setResponseData] = useState<IData[] | null>(null); // State to store the API response data
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -46,7 +33,7 @@ function SearchBar() {
       .then((response) => response.json())
       .then((data) => {
         // Handle the response data as needed
-        setResponseData(data); // Update the state with the API response data
+        setResponseData(data || null); // Update the state with the API response data
       })
       .catch((error) => {
         // Handle any errors that occur during the request

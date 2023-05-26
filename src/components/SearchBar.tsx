@@ -152,13 +152,14 @@ function SearchBar() {
   return (
     <div>
       <img
-        src="src\images\lokal.svg"
+        src="public\images\lokal.svg"
         style={{
           display: "flex",
           margin: "0 auto",
           width: "200px",
           paddingTop: "30px",
           paddingBottom: "20px",
+          cursor:"pointer"
         }}
       ></img>
       <div

@@ -56,7 +56,7 @@ const Categories = ({ data }: { data: IData[] | null }) => {
                 <p className="city">{city}</p>
                 <div className="contentDetails">
                 <p>{items[i].rating}</p>
-                <img src="src\images\star.svg" alt="rating star" style={{width:"16px"}} />
+                <img src="public\images\star.svg" alt="rating star" style={{width:"16px"}} />
                 {items[i].opening_hours.open_now ? (
                   <p className="status">OPEN</p>
                 ) : (

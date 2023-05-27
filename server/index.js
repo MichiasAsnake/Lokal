@@ -8,7 +8,7 @@ const app = express();
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://tubular-empanada-06ce57.netlify.app/"
+    "https://tubular-empanada-06ce57.netlify.app"
   );
   next();
 });

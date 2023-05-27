@@ -1,10 +1,10 @@
 @font-face {
   font-family: "Apercu";
-  src: url("public/font/Apercu Bold.otf") format("opentype");
+  src: url("src/font/Apercu Regular.otf") format("opentype");
 }
 @font-face {
   font-family: "Apercu Bold";
-  src: url("public/font/Apercu Bold.otf") format("opentype");
+  src: url("src/font/Apercu Regular.otf") format("opentype");
 }
 
 :root {

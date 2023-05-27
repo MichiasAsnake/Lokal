@@ -152,7 +152,7 @@ function SearchBar() {
   return (
     <div>
       <img
-        src="public\images\lokal.svg"
+        src="src\images\lokal.svg"
         style={{
           display: "flex",
           margin: "0 auto",

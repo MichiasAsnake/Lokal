@@ -5,7 +5,14 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-app.use(cors({ origin: "https://tubular-empanada-06ce57.netlify.app/" }));
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://tubular-empanada-06ce57.netlify.app/"
+  );
+  next();
+});
+
 app.use(bodyParser.json());
 
 // Start server

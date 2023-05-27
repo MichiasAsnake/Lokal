@@ -5,11 +5,11 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: "https://tubular-empanada-06ce57.netlify.app/" }));
 app.use(bodyParser.json());
 
 // Start server
-const PORT = 5000; // Replace with your desired port number
+const PORT = process.env.PORT || 5000; // Replace with your desired port number
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

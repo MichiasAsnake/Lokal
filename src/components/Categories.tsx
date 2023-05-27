@@ -1,5 +1,6 @@
 import React from "react";
 import { IData } from "./types";
+import SearchBar from "./SearchBar";
 
 const Categories = ({ data }: { data: IData[] | null }) => {
   if (data === null) {
@@ -10,6 +11,7 @@ const Categories = ({ data }: { data: IData[] | null }) => {
     );
   }
   const [currentIndex, setCurrentIndex] = React.useState(0); // Current index of the carousel
+  const [cat, setCat] = React.useState(false);
   const maxIndex = data ? data.length - 1 : 0;
 
   const handleLeftArrowClick = () => {

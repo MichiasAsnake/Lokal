@@ -7,6 +7,9 @@ function SearchBar() {
   const [lat, setLat] = useState<number>(0);
   const [long, setLong] = useState<number>(0);
   const [responseData, setResponseData] = useState<IData[] | null>(null); // State to store the API response data
+  const [cat, setCat] = useState(false);
+
+  console.log(cat)
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -148,25 +151,29 @@ function SearchBar() {
       </div>
     );
   };
-  console.log(search);
+
+  function handleClick() {
+    setSearch("");
+  }
+
   return (
     <div>
       <img
-        src="src\images\lokal.svg"
+        src="\images\lokal.svg"
         style={{
           display: "flex",
           margin: "0 auto",
           width: "200px",
           paddingTop: "30px",
           paddingBottom: "20px",
-          cursor:"pointer"
+          cursor: "pointer",
         }}
+        onClick={handleClick}
       ></img>
       <div
         style={{
           width: "1102px",
           margin: "0 auto",
-          fontFamily: "Apercu Bold",
           fontSize: "27.57px",
           paddingBottom: "10px",
         }}
@@ -175,6 +182,7 @@ function SearchBar() {
       </div>
 
       <div>{search ? <Categories data={responseData} /> : JobCards()}</div>
+      
     </div>
   );
 }

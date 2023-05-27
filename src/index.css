@@ -1,14 +1,5 @@
-@font-face {
-  font-family: "Apercu";
-  src: url("src/font/Apercu Regular.otf") format("opentype");
-}
-@font-face {
-  font-family: "Apercu Bold";
-  src: url("src/font/Apercu Regular.otf") format("opentype");
-}
-
 :root {
-  font-family: Apercu;
+  font-family: "Inter";
   font-weight: 400;
 
   color-scheme: light dark;

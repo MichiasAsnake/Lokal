@@ -28,7 +28,7 @@ function SearchBar() {
   const handleSearch = () => {
     // Trigger the GET request with the values of search and loc
     fetch(
-      `http://localhost:5000/api/search?search=${search}&lat=${lat}&long=${long}`,
+      `https://lokal-5xf5.onrender.com/api/search?search=${search}&lat=${lat}&long=${long}`,
       {
         method: "GET",
       }

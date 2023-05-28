@@ -33,6 +33,6 @@ npm run dev
 ## Developing
 
 ### Built With
-React, Javascript, Vite, HTML, CSS
+React, TypeScript, Javascript, Node.js, Express, Vite, HTML, CSS
 
 ![JobsSpot](https://user-images.githubusercontent.com/113400872/212501752-f9105e31-a582-4cc3-9d58-b374e79753a7.PNG)

@@ -35,4 +35,5 @@ npm run dev
 ### Built With
 React, TypeScript, Javascript, Node.js, Express, Vite, HTML, CSS
 
-![JobsSpot](https://user-images.githubusercontent.com/113400872/212501752-f9105e31-a582-4cc3-9d58-b374e79753a7.PNG)
+
+![Lokalimg](https://github.com/MichiasAsnake/Lokal/assets/113400872/e4708b15-3e81-4043-ae1b-bebff44002fb)

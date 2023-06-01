@@ -20,12 +20,12 @@ git clone https://github.com/MichiasAsnake/Lokal
 ```shell
 cd Lokal
 ```
-3. Navigate to the Project Directory.
+3. Run npm install.
 
 ```shell
 npm install
 ```
-4. Navigate to the Project Directory.
+4. Open the project in browser.
 
 ```shell
 npm run dev
